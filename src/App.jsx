@@ -47,9 +47,19 @@ function App() {
 
     useEffect(() => {
         const fetchGames = async () => {
-            const response = await fetch('https://cbce-139-162-146-232.ngrok-free.app/games');
-            const games = await response.json();
-            setGamesList(games); // setGamesList — состояние списка игр
+            try {
+                console.log('Запрос на получение игр отправлен');
+                const response = await fetch('https://cbce-139-162-146-232.ngrok-free.app/games');
+                const games = await response.json();
+                console.log('Игры:', games);
+                if (Array.isArray(games)) {
+                    setGamesList(games); // Обновляем состояние
+                } else {
+                    console.error('Не удалось получить список игр');
+                }
+            } catch (error) {
+                console.error('Ошибка при запросе игр:', error);
+            }
         };
     
         fetchGames();
