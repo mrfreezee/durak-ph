@@ -65,6 +65,7 @@ function App() {
         const game = await response.json();
         if (game.success) {
             setGameState('game');
+            fetchGames()
         }
     };
     
@@ -77,13 +78,7 @@ function App() {
         const game = await response.json();
         if (game.success) {
             setGameState('game');
-        }
-    };
-
-    const startGame = () => {
-        setGameState('game');
-        if (phaserRef.current?.scene) {
-            phaserRef.current.scene.startGame(); 
+            fetchGames()
         }
     };
 
