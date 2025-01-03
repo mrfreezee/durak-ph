@@ -49,8 +49,13 @@ function App() {
         const fetchGames = async () => {
             try {
                 console.log('Запрос на получение игр отправлен');
-                const response = await fetch('https://cbce-139-162-146-232.ngrok-free.app/games');
+                
+                const response = await fetch('https://cbce-139-162-146-232.ngrok-free.app/games',{
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                });
                 const games = await response.json();
+                console.log(games)
                 console.log('Игры:', games);
                 if (Array.isArray(games)) {
                     setGamesList(games); // Обновляем состояние
