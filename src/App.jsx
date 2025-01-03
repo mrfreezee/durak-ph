@@ -25,7 +25,7 @@ function App() {
             setTelegramId(telegramId)
             setUsername(username);
     
-            fetch('https://cbce-139-162-146-232.ngrok-free.app/register', {
+            fetch('https://https://c3ff-178-125-203-51.ngrok-free.app/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ telegram_id: telegramId, username }),
@@ -50,12 +50,17 @@ function App() {
             try {
                 console.log('Запрос на получение игр отправлен');
                 
-                const response = await fetch('https://cbce-139-162-146-232.ngrok-free.app/games',{
+                const response = await fetch('https://c3ff-178-125-203-51.ngrok-free.app/games', {
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
                 });
+    
+                // Проверяем статус ответа
+                if (!response.ok) {
+                    throw new Error(`Ошибка HTTP: ${response.status}`);
+                }
+    
                 const games = await response.json();
-                console.log(games)
                 console.log('Игры:', games);
                 if (Array.isArray(games)) {
                     setGamesList(games); // Обновляем состояние
@@ -71,7 +76,7 @@ function App() {
     }, []);
 
     const createGame = async () => {
-        const response = await fetch('https://cbce-139-162-146-232.ngrok-free.app/create-game', {
+        const response = await fetch('https://c3ff-178-125-203-51.ngrok-free.app/create-game', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ player1_id: telegramId }),
@@ -85,7 +90,7 @@ function App() {
     };
     
     const joinGame = async (gameId) => {
-        const response = await fetch(`https://cbce-139-162-146-232.ngrok-free.app/join-game/${gameId}`, {
+        const response = await fetch(`https://0ffe-178-125-203-51.ngrok-free.app/join-game/${gameId}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ playerId: 1 })
