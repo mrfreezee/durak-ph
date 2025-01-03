@@ -59,7 +59,7 @@ function App() {
         const response = await fetch('https://cbce-139-162-146-232.ngrok-free.app/create-game', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ playerId: telegramId }),
+            body: JSON.stringify({ player1_id: telegramId }),
         });
 
         const game = await response.json();
